@@ -25,15 +25,10 @@ jobs:
         run: |
           pytest
 
-  Email:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Send email
         if: ${{ always() }}
         uses: dawidd6/action-send-mail@v3
         with:
-          #smpt://SARANKUMAR G:mtbw vhhr wjax stsm@smtp.gmail.com:465
           # Required mail server address if not connection_url:
           server_address: smtp.gmail.com
           # Server port, default 25:
@@ -48,7 +43,7 @@ jobs:
 
           from: ${{secrets.MAIL_ADDRESS}}
           to: wevef38192@chainds.com
-          subject: GitHub ${{github.job}} job of ${{github.repository}} has ${{job.status}}
+          subject: Github Actions job result
           # Optional priority: 'high', 'normal' (default) or 'low'
-          priority: low
-          body: ${{github.job}} job in workflow ${{github.workflow}} of ${{github.repository}} has ${{job.status}}.
+          priority: high
+          body: ${{github.job}} in workflow "${{github.workflow}}" of ${{github.repository}} has ${{job.status}}.
