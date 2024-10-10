@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Github Actions Job Result</h2>
+    <table>
+      <tr>
+        <th>Repository</th>
+        <th>Workflow</th>
+        <th>Job</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>${{github.repository}}</td>
+        <td>${{github.workflow}}</td>
+        <td>${{github.job}}</td>
+        <td>${{job.status}}</td>
+      </tr>
+    </table>
+    <p>The build job of ${{github.repository}} has completed.</p>
+  </body>
+</html>
