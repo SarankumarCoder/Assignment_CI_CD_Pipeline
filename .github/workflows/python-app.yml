@@ -50,4 +50,4 @@ jobs:
           subject: Github Actions job result
           # Optional priority: 'high', 'normal' (default) or 'low'
           priority: high
-          html_body: file://README.html
+          html_body: file://TABLE.html
