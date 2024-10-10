@@ -33,7 +33,7 @@ jobs:
         if: ${{ always() }}
         uses: dawidd6/action-send-mail@v3
         with:
-          connection_url: ${{secrets.MAIL_CONNECTION}} #smpt://SARANKUMAR G:mtbw vhhr wjax stsm@smtp.gmail.com:465
+          #smpt://SARANKUMAR G:mtbw vhhr wjax stsm@smtp.gmail.com:465
           # Required mail server address if not connection_url:
           server_address: smtp.gmail.com
           # Server port, default 25:
