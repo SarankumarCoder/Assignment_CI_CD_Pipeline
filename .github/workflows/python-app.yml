@@ -2,21 +2,42 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
-    
+    branches: ["main"]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.12.2
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.12"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Test with pytest
-      run: |
-        pytest
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12.2
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Test with pytest
+        run: |
+          pytest
+
+      - name: Send email
+        if: ${{ always() }}
+        uses: devellany/send-mailer@v1.0.2
+        with:
+          host: smtp.google.com
+          # Optional port (defaults to 465)
+          port: 465
+
+          account: ${{secrets.ACCOUNT}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: Sarankumar G
+
+          from: ${{secrets.MAIL_ADDRESS}}
+          to: wevef38192@chainds.com
+          subject: GitHub ${{ github.job }} job of ${{ github.repository}} has ${{ job.status}}
+          body: ${{ github.job}} job in workflow ${{github.workflow}} of ${{ github.repository}} has ${{ job.status}}.
