@@ -29,6 +29,9 @@ jobs:
     needs: build
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Send email
         if: ${{ always() }}
         uses: dawidd6/action-send-mail@v3
