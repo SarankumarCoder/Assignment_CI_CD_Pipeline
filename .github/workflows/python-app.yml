@@ -41,10 +41,10 @@ jobs:
 
       - name: Replace placeholders in HTML
         run: |
-          sed -i "s/\${{github.repository}}/${REPO_NAME}/g" TABLE.html
-          sed -i "s/\${{github.workflow}}/${WORKFLOW_NAME}/g" TABLE.html
-          sed -i "s/\${{github.job}}/${JOB_NAME}/g" TABLE.html
-          sed -i "s/\${{github.action_status}}/${JOB_STATUS}/g" TABLE.html
+          sed -i -e "s/\${{github.repository}}/${REPO_NAME}/g" TABLE.html
+          sed -i -e "s/\${{github.workflow}}/${WORKFLOW_NAME}/g" TABLE.html
+          sed -i -e "s/\${{github.job}}/${JOB_NAME}/g" TABLE.html
+          sed -i -e "s/\${{github.action_status}}/${JOB_STATUS}/g" TABLE.html
 
       - name: Send email
         if: ${{ always() }}
@@ -63,7 +63,7 @@ jobs:
           password: ${{secrets.MAIL_PASSWORD}}
 
           from: ${{secrets.MAIL_ADDRESS}}
-          to: wevef38192@chainds.com
+          to: xemohe9954@scarden.com
           subject: Github Actions job result
           # Optional priority: 'high', 'normal' (default) or 'low'
           priority: high
