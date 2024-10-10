@@ -11,6 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set environment variable
+        run: |
+          echo "REPO_NAME=${{github.repository}}">>$GITHUB_ENV
+          echo "WORKFLOW_NAME=${{github.workflow}}">>$GITHUB_ENV
+          echo "JOB_NAME=${{github.job}}">>$GITHUB_ENV
+          echo "JOB_STATUS=${{github.action_status}}">>$GITHUB_ENV
+
       - name: Set up Python 3.12.2
         uses: actions/setup-python@v3
         with:
@@ -31,6 +38,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Replace placeholders in HTML
+        run: |
+          sed -i 's/\${{github.repository}}/${REPO_NAME}/g' README.html
+          sed -i 's/\${{github.workflow}}/${ANOTHER_VAR}/g' README.html
+          sed -i 's/\${{github.job}}/${YET_ANOTHER_VAR}/g' README.html
+          sed -i 's/\${{github.action_status}}/${YET_ANOTHER_VAR}/g' README.html
 
       - name: Send email
         if: ${{ always() }}

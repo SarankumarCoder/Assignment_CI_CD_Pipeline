@@ -30,9 +30,11 @@
         <td>${{github.repository}}</td>
         <td>${{github.workflow}}</td>
         <td>${{github.job}}</td>
-        <td>${{job.status}}</td>
+        <td>${{github.action_status}}</td>
       </tr>
     </table>
-    <p>The build job of ${{github.repository}} has completed.</p>
+    <p>
+      The build job of ${{github.repository}} has ${{github.action_status}}.
+    </p>
   </body>
 </html>
